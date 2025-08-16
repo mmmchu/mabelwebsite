@@ -150,21 +150,21 @@ const Index = () => {
       {/* Interactive Nebula Background */}
       <IndexBg />
 
-      {/* Hero Section */}
-      <section className="relative text-white py-20 px-4 z-10">
+      {/* Hero Section - Improved centering and responsive text */}
+      <section className="relative text-white py-12 md:py-20 px-4 z-10">
         <div className={`max-w-4xl mx-auto text-center transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <div className="mb-8">
+          <div className="mb-6 md:mb-8">
             <img 
               src="./lovable-uploads/9e148b8f-b58c-4150-b6e8-6eda3a0c6fed.png" 
               alt="Mabel Chu Wen Xin" 
-              className="w-32 h-32 rounded-full mx-auto object-cover border-4 border-white/20 shadow-lg hover:scale-110 transition-transform duration-300 hover:rotate-2"
+              className="w-24 h-24 md:w-32 md:h-32 rounded-full mx-auto object-cover border-4 border-white/20 shadow-lg hover:scale-110 transition-transform duration-300 hover:rotate-2"
             />
           </div>
-          <h1 className="text-5xl font-bold mb-4 animate-fade-in">Chu Wen Xin Mabel</h1>
-          <p className="text-xl mb-2 text-white/90 animate-slide-in-right">Computer Science Graduate</p>
-          <p className="text-lg mb-4 text-white/80">BSc (Hons) Computer Science with Artificial Intelligence</p>
-          <p className="text-base mb-8 text-white/70">47600 Subang Jaya, Selangor</p>
-          <div className="flex items-center justify-center gap-2 mb-8 text-white/70">
+          <h1 className="text-3xl md:text-5xl font-bold mb-3 md:mb-4 animate-fade-in">Chu Wen Xin Mabel</h1>
+          <p className="text-lg md:text-xl mb-2 text-white/90 animate-slide-in-right">Computer Science Graduate</p>
+          <p className="text-base md:text-lg mb-3 md:mb-4 text-white/80">BSc (Hons) Computer Science with Artificial Intelligence</p>
+          <p className="text-sm md:text-base mb-6 md:mb-8 text-white/70">47600 Subang Jaya, Selangor</p>
+          <div className="flex items-center justify-center gap-2 mb-6 md:mb-8 text-white/70">
             <MapPin className="w-4 h-4 animate-bounce" />
             <span>Malaysia</span>
           </div>
@@ -182,22 +182,22 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Projects Section */}
-      <section className="py-16 px-4 relative z-10 bg-background/80 backdrop-blur-sm">
+      {/* Projects Section - Improved card layout */}
+      <section className="py-12 md:py-16 px-4 relative z-10 bg-background/80 backdrop-blur-sm">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-12 animate-fade-in">Projects</h2>
-          <div className="space-y-6">
+          <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 md:mb-12 animate-fade-in">Projects</h2>
+          <div className="space-y-4 md:space-y-6">
             {projects.map((project, index) => (
-              <Card key={index} className="p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] animate-fade-in bg-card/80 backdrop-blur-sm" style={{ animationDelay: `${index * 0.1}s` }}>
-                <div className="flex items-start justify-between mb-4">
-                  <div>
-                    <h3 className="text-xl font-semibold text-primary hover:text-accent transition-colors duration-200">{project.title}</h3>
+              <Card key={index} className="p-4 md:p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 hover:scale-[1.01] md:hover:scale-[1.02] animate-fade-in bg-card/80 backdrop-blur-sm" style={{ animationDelay: `${index * 0.1}s` }}>
+                <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-3 md:mb-4 gap-2">
+                  <div className="flex-1">
+                    <h3 className="text-lg md:text-xl font-semibold text-primary hover:text-accent transition-colors duration-200">{project.title}</h3>
                     {project.github && (
-                      <div className="flex items-center mt-1 text-sm text-muted-foreground hover:text-primary transition-colors duration-200">
-                        <Github className="w-4 h-4 mr-2 hover:rotate-12 transition-transform duration-200" />
+                      <div className="flex items-center mt-1 text-xs md:text-sm text-muted-foreground hover:text-primary transition-colors duration-200">
+                        <Github className="w-3 h-3 md:w-4 md:h-4 mr-2 hover:rotate-12 transition-transform duration-200" />
                         {project.github.startsWith('http') ? (
-                          <a href={project.github} target="_blank" rel="noopener noreferrer" className="hover:underline">
-                            {project.github}
+                          <a href={project.github} target="_blank" rel="noopener noreferrer" className="hover:underline break-all">
+                            {project.github.replace('https://', '')}
                           </a>
                         ) : (
                           project.github
@@ -205,17 +205,17 @@ const Index = () => {
                       </div>
                     )}
                   </div>
-                  <div className="flex items-center text-sm text-muted-foreground">
-                    <Calendar className="w-4 h-4 mr-2" />
+                  <div className="flex items-center text-xs md:text-sm text-muted-foreground whitespace-nowrap">
+                    <Calendar className="w-3 h-3 md:w-4 md:h-4 mr-1 md:mr-2" />
                     {project.period}
                   </div>
                 </div>
-                <p className="text-sm text-muted-foreground leading-relaxed mb-4">
+                <p className="text-xs md:text-sm text-muted-foreground leading-relaxed mb-3 md:mb-4">
                   {project.description}
                 </p>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-1 md:gap-2">
                   {project.skills.map((skill, idx) => (
-                    <Badge key={idx} variant="secondary" className="hover:scale-105 transition-transform duration-200 cursor-default">
+                    <Badge key={idx} variant="secondary" className="text-xs md:text-sm hover:scale-105 transition-transform duration-200 cursor-default">
                       {skill}
                     </Badge>
                   ))}
@@ -226,26 +226,26 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Work Experience Section */}
-      <section className="py-16 px-4 relative z-10 bg-muted/80 backdrop-blur-sm">
+      {/* Work Experience Section - Improved card layout */}
+      <section className="py-12 md:py-16 px-4 relative z-10 bg-muted/80 backdrop-blur-sm">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-12 animate-fade-in">Work Experience</h2>
-          <div className="space-y-8">
+          <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 md:mb-12 animate-fade-in">Work Experience</h2>
+          <div className="space-y-6 md:space-y-8">
             {workExperience.map((job, index) => (
-              <Card key={index} className="p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 animate-slide-in-right bg-card/80 backdrop-blur-sm" style={{ animationDelay: `${index * 0.2}s` }}>
-                <div className="flex items-start justify-between mb-4">
-                  <div>
-                    <h3 className="text-xl font-semibold text-primary">{job.title}</h3>
-                    <p className="text-lg text-muted-foreground">{job.company}</p>
+              <Card key={index} className="p-4 md:p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 animate-slide-in-right bg-card/80 backdrop-blur-sm" style={{ animationDelay: `${index * 0.2}s` }}>
+                <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-3 md:mb-4 gap-2">
+                  <div className="flex-1">
+                    <h3 className="text-lg md:text-xl font-semibold text-primary">{job.title}</h3>
+                    <p className="text-base md:text-lg text-muted-foreground">{job.company}</p>
                   </div>
-                  <div className="flex items-center text-sm text-muted-foreground">
-                    <Calendar className="w-4 h-4 mr-2" />
+                  <div className="flex items-center text-xs md:text-sm text-muted-foreground whitespace-nowrap">
+                    <Calendar className="w-3 h-3 md:w-4 md:h-4 mr-1 md:mr-2" />
                     {job.period}
                   </div>
                 </div>
-                <ul className="space-y-2">
+                <ul className="space-y-1 md:space-y-2">
                   {job.responsibilities.map((responsibility, idx) => (
-                    <li key={idx} className="text-sm text-muted-foreground leading-relaxed hover:text-foreground transition-colors duration-200">
+                    <li key={idx} className="text-xs md:text-sm text-muted-foreground leading-relaxed hover:text-foreground transition-colors duration-200">
                       • {responsibility}
                     </li>
                   ))}
@@ -256,26 +256,26 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Education Section */}
-      <section className="py-16 px-4 relative z-10 bg-background/80 backdrop-blur-sm">
+      {/* Education Section - Improved card layout */}
+      <section className="py-12 md:py-16 px-4 relative z-10 bg-background/80 backdrop-blur-sm">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-12 animate-fade-in">Education & Awards</h2>
-          <div className="space-y-6">
+          <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 md:mb-12 animate-fade-in">Education & Awards</h2>
+          <div className="space-y-4 md:space-y-6">
             {education.map((edu, index) => (
-              <Card key={index} className="p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 animate-scale-in bg-card/80 backdrop-blur-sm" style={{ animationDelay: `${index * 0.15}s` }}>
-                <div className="flex items-start justify-between mb-4">
-                  <div>
-                    <h3 className="text-xl font-semibold text-primary">{edu.degree}</h3>
-                    <p className="text-lg text-muted-foreground">{edu.institution}</p>
+              <Card key={index} className="p-4 md:p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 animate-scale-in bg-card/80 backdrop-blur-sm" style={{ animationDelay: `${index * 0.15}s` }}>
+                <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-3 md:mb-4 gap-2">
+                  <div className="flex-1">
+                    <h3 className="text-lg md:text-xl font-semibold text-primary">{edu.degree}</h3>
+                    <p className="text-base md:text-lg text-muted-foreground">{edu.institution}</p>
                   </div>
-                  <div className="flex items-center text-sm text-muted-foreground">
-                    <Calendar className="w-4 h-4 mr-2" />
+                  <div className="flex items-center text-xs md:text-sm text-muted-foreground whitespace-nowrap">
+                    <Calendar className="w-3 h-3 md:w-4 md:h-4 mr-1 md:mr-2" />
                     {edu.period}
                   </div>
                 </div>
                 <ul className="space-y-1">
                   {edu.details.map((detail, idx) => (
-                    <li key={idx} className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200">
+                    <li key={idx} className="text-xs md:text-sm text-muted-foreground hover:text-foreground transition-colors duration-200">
                       • {detail}
                     </li>
                   ))}
@@ -286,48 +286,48 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Skills Section */}
-      <section className="py-16 px-4 relative z-10 bg-muted/80 backdrop-blur-sm">
+      {/* Skills Section - Improved grid layout */}
+      <section className="py-12 md:py-16 px-4 relative z-10 bg-muted/80 backdrop-blur-sm">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-12 animate-fade-in">Technical Skills</h2>
+          <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 md:mb-12 animate-fade-in">Technical Skills</h2>
           
-          <div className="grid md:grid-cols-3 gap-8 mb-12">
-            <Card className="p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 hover:rotate-1 animate-slide-in-right bg-card/80 backdrop-blur-sm">
-              <div className="flex items-center mb-4">
-                <Code className="w-6 h-6 text-primary mr-3 hover:rotate-12 transition-transform duration-200" />
-                <h3 className="text-xl font-semibold">Programming Languages</h3>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 mb-8 md:mb-12">
+            <Card className="p-4 md:p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 md:hover:-translate-y-2 hover:rotate-1 animate-slide-in-right bg-card/80 backdrop-blur-sm">
+              <div className="flex items-center mb-3 md:mb-4">
+                <Code className="w-5 h-5 md:w-6 md:h-6 text-primary mr-2 md:mr-3 hover:rotate-12 transition-transform duration-200" />
+                <h3 className="text-lg md:text-xl font-semibold">Programming Languages</h3>
               </div>
-              <div className="flex flex-wrap gap-2">
-                {technicalSkills.map((skill, index) => (
-                  <Badge key={skill} variant="secondary" className="hover:scale-110 transition-all duration-200 cursor-default hover:bg-primary hover:text-primary-foreground">
+              <div className="flex flex-wrap gap-1 md:gap-2">
+                {technicalSkills.map((skill) => (
+                  <Badge key={skill} variant="secondary" className="text-xs md:text-sm hover:scale-105 transition-all duration-200 cursor-default hover:bg-primary hover:text-primary-foreground">
                     {skill}
                   </Badge>
                 ))}
               </div>
             </Card>
 
-            <Card className="p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 hover:-rotate-1 animate-scale-in bg-card/80 backdrop-blur-sm" style={{ animationDelay: '0.1s' }}>
-              <div className="flex items-center mb-4">
-                <Brain className="w-6 h-6 text-accent mr-3 hover:pulse transition-all duration-200" />
-                <h3 className="text-xl font-semibold">Frameworks</h3>
+            <Card className="p-4 md:p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 md:hover:-translate-y-2 hover:-rotate-1 animate-scale-in bg-card/80 backdrop-blur-sm" style={{ animationDelay: '0.1s' }}>
+              <div className="flex items-center mb-3 md:mb-4">
+                <Brain className="w-5 h-5 md:w-6 md:h-6 text-accent mr-2 md:mr-3 hover:pulse transition-all duration-200" />
+                <h3 className="text-lg md:text-xl font-semibold">Frameworks</h3>
               </div>
-              <div className="flex flex-wrap gap-2">
-                {frameworks.map((framework, index) => (
-                  <Badge key={framework} variant="secondary" className="hover:scale-110 transition-all duration-200 cursor-default hover:bg-accent hover:text-accent-foreground">
+              <div className="flex flex-wrap gap-1 md:gap-2">
+                {frameworks.map((framework) => (
+                  <Badge key={framework} variant="secondary" className="text-xs md:text-sm hover:scale-105 transition-all duration-200 cursor-default hover:bg-accent hover:text-accent-foreground">
                     {framework}
                   </Badge>
                 ))}
               </div>
             </Card>
 
-            <Card className="p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 hover:rotate-1 animate-slide-in-right bg-card/80 backdrop-blur-sm" style={{ animationDelay: '0.2s' }}>
-              <div className="flex items-center mb-4">
-                <GraduationCap className="w-6 h-6 text-primary mr-3 hover:bounce transition-all duration-200" />
-                <h3 className="text-xl font-semibold">Languages</h3>
+            <Card className="p-4 md:p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 md:hover:-translate-y-2 hover:rotate-1 animate-slide-in-right bg-card/80 backdrop-blur-sm" style={{ animationDelay: '0.2s' }}>
+              <div className="flex items-center mb-3 md:mb-4">
+                <GraduationCap className="w-5 h-5 md:w-6 md:h-6 text-primary mr-2 md:mr-3 hover:bounce transition-all duration-200" />
+                <h3 className="text-lg md:text-xl font-semibold">Languages</h3>
               </div>
-              <div className="flex flex-wrap gap-2">
-                {languages.map((language, index) => (
-                  <Badge key={language} variant="secondary" className="hover:scale-110 transition-all duration-200 cursor-default hover:bg-primary hover:text-primary-foreground">
+              <div className="flex flex-wrap gap-1 md:gap-2">
+                {languages.map((language) => (
+                  <Badge key={language} variant="secondary" className="text-xs md:text-sm hover:scale-105 transition-all duration-200 cursor-default hover:bg-primary hover:text-primary-foreground">
                     {language}
                   </Badge>
                 ))}
@@ -337,44 +337,44 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Key Strengths */}
-      <section className="py-16 px-4 relative z-10 bg-background/80 backdrop-blur-sm">
+      {/* Key Strengths - Improved grid layout */}
+      <section className="py-12 md:py-16 px-4 relative z-10 bg-background/80 backdrop-blur-sm">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-12 animate-fade-in">Key Strengths</h2>
-          <div className="grid md:grid-cols-3 gap-6">
-            <Card className="p-6 text-center shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 hover:scale-105 bg-card/80 backdrop-blur-sm">
-              <Brain className="w-8 h-8 text-primary mx-auto mb-4 hover:rotate-12 transition-transform duration-300" />
-              <h3 className="font-semibold mb-2">Mobile Development Passion</h3>
-              <p className="text-sm text-muted-foreground">Passionate about mobile application development but open to venture into other fields</p>
+          <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 md:mb-12 animate-fade-in">Key Strengths</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+            <Card className="p-4 md:p-6 text-center shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 md:hover:-translate-y-2 hover:scale-105 bg-card/80 backdrop-blur-sm">
+              <Brain className="w-6 h-6 md:w-8 md:h-8 text-primary mx-auto mb-3 md:mb-4 hover:rotate-12 transition-transform duration-300" />
+              <h3 className="font-semibold mb-1 md:mb-2 text-sm md:text-base">Mobile Development Passion</h3>
+              <p className="text-xs md:text-sm text-muted-foreground">Passionate about mobile application development but open to venture into other fields</p>
             </Card>
             
-            <Card className="p-6 text-center shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 hover:scale-105 bg-card/80 backdrop-blur-sm" style={{ animationDelay: '0.1s' }}>
-              <Award className="w-8 h-8 text-accent mx-auto mb-4 hover:rotate-12 transition-transform duration-300" />
-              <h3 className="font-semibold mb-2">Adaptable Problem Solver</h3>
-              <p className="text-sm text-muted-foreground">Quick learner with strong analytical skills and ability to adapt to new technologies and challenges</p>
+            <Card className="p-4 md:p-6 text-center shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 md:hover:-translate-y-2 hover:scale-105 bg-card/80 backdrop-blur-sm" style={{ animationDelay: '0.1s' }}>
+              <Award className="w-6 h-6 md:w-8 md:h-8 text-accent mx-auto mb-3 md:mb-4 hover:rotate-12 transition-transform duration-300" />
+              <h3 className="font-semibold mb-1 md:mb-2 text-sm md:text-base">Adaptable Problem Solver</h3>
+              <p className="text-xs md:text-sm text-muted-foreground">Quick learner with strong analytical skills and ability to adapt to new technologies and challenges</p>
             </Card>
             
-            <Card className="p-6 text-center shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 hover:scale-105 bg-card/80 backdrop-blur-sm" style={{ animationDelay: '0.2s' }}>
-              <Briefcase className="w-8 h-8 text-primary mx-auto mb-4 hover:rotate-12 transition-transform duration-300" />
-              <h3 className="font-semibold mb-2">Team Collaboration</h3>
-              <p className="text-sm text-muted-foreground">Excellent communication skills with experience working in diverse teams and multicultural environments</p>
+            <Card className="p-4 md:p-6 text-center shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 md:hover:-translate-y-2 hover:scale-105 bg-card/80 backdrop-blur-sm" style={{ animationDelay: '0.2s' }}>
+              <Briefcase className="w-6 h-6 md:w-8 md:h-8 text-primary mx-auto mb-3 md:mb-4 hover:rotate-12 transition-transform duration-300" />
+              <h3 className="font-semibold mb-1 md:mb-2 text-sm md:text-base">Team Collaboration</h3>
+              <p className="text-xs md:text-sm text-muted-foreground">Excellent communication skills with experience working in diverse teams and multicultural environments</p>
             </Card>
           </div>
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section className="text-white py-16 px-4 relative z-10">
+      {/* Contact Section - Improved responsive layout */}
+      <section className="text-white py-12 md:py-16 px-4 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-8 animate-fade-in">Let's Connect</h2>
-          <p className="text-lg mb-8 text-white/90 animate-slide-in-right">
+          <h2 className="text-2xl md:text-3xl font-bold mb-6 md:mb-8 animate-fade-in">Let's Connect</h2>
+          <p className="text-base md:text-lg mb-6 md:mb-8 text-white/90 animate-slide-in-right">
             Looking for opportunities to work on real-life challenges.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center animate-scale-in">
+          <div className="flex flex-col items-center sm:flex-row gap-3 md:gap-4 justify-center animate-scale-in">
             <Button 
               variant="secondary" 
               size="lg"
-              className="bg-white text-primary hover:bg-white/90 transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
+              className="bg-white text-primary hover:bg-white/90 transition-all duration-300 transform hover:scale-105 hover:shadow-lg text-sm md:text-base"
               asChild
             >
               <a href="https://www.linkedin.com/in/mabel-chu-wen-xin-193bba299" target="_blank" rel="noopener noreferrer">
@@ -382,8 +382,8 @@ const Index = () => {
                 LinkedIn Profile
               </a>
             </Button>
-            <div className="flex items-center justify-center gap-2 text-white/90 text-lg">
-              <Mail className="w-5 h-5 animate-bounce" />
+            <div className="flex items-center justify-center gap-2 text-white/90 text-sm md:text-base">
+              <Mail className="w-4 h-4 md:w-5 md:h-5 animate-bounce" />
               <span>mchu1703@gmail.com</span>
             </div>
           </div>
@@ -391,9 +391,9 @@ const Index = () => {
       </section>
 
       {/* Footer */}
-      <footer className="bg-muted/80 backdrop-blur-sm py-8 px-4 relative z-10">
+      <footer className="bg-muted/80 backdrop-blur-sm py-6 md:py-8 px-4 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
-          <p className="text-muted-foreground">
+          <p className="text-xs md:text-sm text-muted-foreground">
             © 2024 Chu Wen Xin Mabel.
           </p>
         </div>
