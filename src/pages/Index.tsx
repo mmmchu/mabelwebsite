@@ -182,49 +182,64 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Projects Section */}
-      <section className="py-16 px-4 relative z-10 bg-background/80 backdrop-blur-sm">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-12 animate-fade-in">Projects</h2>
-          <div className="space-y-6">
-            {projects.map((project, index) => (
-              <Card key={index} className="p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] animate-fade-in bg-card/80 backdrop-blur-sm" style={{ animationDelay: `${index * 0.1}s` }}>
-                <div className="flex items-start justify-between mb-4">
-                  <div>
-                    <h3 className="text-xl font-semibold text-primary hover:text-accent transition-colors duration-200">{project.title}</h3>
-                    {project.github && (
-                      <div className="flex items-center mt-1 text-sm text-muted-foreground hover:text-primary transition-colors duration-200">
-                        <Github className="w-4 h-4 mr-2 hover:rotate-12 transition-transform duration-200" />
-                        {project.github.startsWith('http') ? (
-                          <a href={project.github} target="_blank" rel="noopener noreferrer" className="hover:underline">
-                            {project.github}
-                          </a>
-                        ) : (
-                          project.github
-                        )}
-                      </div>
-                    )}
-                  </div>
-                  <div className="flex items-center text-sm text-muted-foreground">
-                    <Calendar className="w-4 h-4 mr-2" />
-                    {project.period}
-                  </div>
+     {/* Projects Section */}
+<section className="py-16 px-4 relative z-10 bg-background/80 backdrop-blur-sm">
+  <div className="max-w-4xl mx-auto">
+    <h2 className="text-3xl font-bold text-center mb-12 animate-fade-in">Projects</h2>
+    <div className="space-y-6">
+      {projects.map((project, index) => (
+        <Card
+          key={index}
+          className="p-6 w-full shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] animate-fade-in bg-card/80 backdrop-blur-sm"
+          style={{ animationDelay: `${index * 0.1}s` }}
+        >
+          <div className="flex flex-col sm:flex-row sm:justify-between mb-4 gap-4">
+            <div className="flex-1 min-w-0">
+              <h3 className="text-xl font-semibold text-primary hover:text-accent transition-colors duration-200 break-words">
+                {project.title}
+              </h3>
+              {project.github && (
+                <div className="flex items-center mt-1 text-sm text-muted-foreground hover:text-primary transition-colors duration-200 break-words">
+                  <Github className="w-4 h-4 mr-2 hover:rotate-12 transition-transform duration-200" />
+                  {project.github.startsWith('http') ? (
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:underline break-words"
+                    >
+                      {project.github}
+                    </a>
+                  ) : (
+                    project.github
+                  )}
                 </div>
-                <p className="text-sm text-muted-foreground leading-relaxed mb-4">
-                  {project.description}
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {project.skills.map((skill, idx) => (
-                    <Badge key={idx} variant="secondary" className="hover:scale-105 transition-transform duration-200 cursor-default">
-                      {skill}
-                    </Badge>
-                  ))}
-                </div>
-              </Card>
+              )}
+            </div>
+            <div className="flex items-center text-sm text-muted-foreground whitespace-nowrap">
+              <Calendar className="w-4 h-4 mr-2" />
+              {project.period}
+            </div>
+          </div>
+          <p className="text-sm text-muted-foreground leading-relaxed mb-4 break-words">
+            {project.description}
+          </p>
+          <div className="flex flex-wrap gap-2">
+            {project.skills.map((skill, idx) => (
+              <Badge
+                key={idx}
+                variant="secondary"
+                className="hover:scale-105 transition-transform duration-200 cursor-default"
+              >
+                {skill}
+              </Badge>
             ))}
           </div>
-        </div>
-      </section>
+        </Card>
+      ))}
+    </div>
+  </div>
+</section>
 
       {/* Work Experience Section */}
       <section className="py-16 px-4 relative z-10 bg-muted/80 backdrop-blur-sm">
